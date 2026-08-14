@@ -6,7 +6,7 @@ package Chandra_Toueg is
    -- System configuration
    Max_Processes : constant := 5;
    Majority      : constant := (Max_Processes / 2) + 1;
-   
+
    type Process_ID is new Positive range 1 .. Max_Processes;
    type Round_Number is new Natural;
    type Value_Type is new Integer;
@@ -48,7 +48,7 @@ package Chandra_Toueg is
       Current_Round : Round_Number := 1;
 
       -- Mailboxes representing network channels for a given round
-      Phase_1_Messages : Estimate_Array := (others => (Valid => False, others => <>));
+      Phase_1_Messages : Estimate_Array := (others => <>);
       Phase_2_Proposal : Value_Type := 0;
       Phase_2_Valid    : Boolean := False;
       Phase_3_Votes    : Vote_Array := (others => None);
@@ -70,5 +70,5 @@ package Chandra_Toueg is
    procedure Initialize (Sim : out Simulator; Initial_Values : array (Process_ID) of Value_Type);
    procedure Crash_Process (Sim : in out Simulator; P : Process_ID);
    procedure Suspect (Sim : in out Simulator; Suspector, Suspected : Process_ID);
-   
+
 end Chandra_Toueg;
