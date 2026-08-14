@@ -5,7 +5,7 @@ with Chandra_Toueg; use Chandra_Toueg;
 
 procedure Tests is
    Sim  : Simulator;
-   Vals : constant array (Process_ID) of Value_Type := (10, 20, 30, 40, 50);
+   Vals : constant Value_Array := (10, 20, 30, 40, 50);
 begin
    Put_Line ("========================================");
    Put_Line ("  CHANDRA-TOUEG ALGORITHM TEST SUITE");
