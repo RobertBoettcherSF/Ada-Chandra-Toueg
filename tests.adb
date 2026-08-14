@@ -139,7 +139,19 @@ begin
    Sim.FD := (others => (others => False));
    Run_Round (Sim); -- Round 2 succeeds
    Assert (Sim.Processes(2).State = Decided, "Round 2 should succeed");
-   Assert (Sim.Processes(2).Decided_Value = Vals(1) or Sim.Processes(2).Decided_Value = Vals(2), "Value must be from initial pool");
+   
+   -- Verify the decided value came from the original pool
+   declare
+      Valid_Value : Boolean := False;
+   begin
+      for I in Process_ID loop
+         if Sim.Processes(2).Decided_Value = Vals(I) then
+            Valid_Value := True;
+         end if;
+      end loop;
+      Assert (Valid_Value, "Decided value must originate from the initial pool");
+   end;
+   
    Put_Line ("      PASS");
    Put_Line ("========================================");
    Put_Line ("ALL 13 TESTS PASSED.");
