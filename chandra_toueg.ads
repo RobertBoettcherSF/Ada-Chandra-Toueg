@@ -44,14 +44,14 @@ package Chandra_Toueg is
    -- Simulator encapsulates the entire distributed system state for deterministic testing
    type Simulator is record
       Processes     : Process_Array;
-      FD            : Failure_Detector := (others => (others => False));
+      FD            : Failure_Detector;
       Current_Round : Round_Number := 1;
 
       -- Mailboxes representing network channels for a given round
-      Phase_1_Messages : Estimate_Array := (others => <>);
+      Phase_1_Messages : Estimate_Array;
       Phase_2_Proposal : Value_Type := 0;
       Phase_2_Valid    : Boolean := False;
-      Phase_3_Votes    : Vote_Array := (others => None);
+      Phase_3_Votes    : Vote_Array;
    end record;
 
    -- Rotating coordinator selection (Variant handling)
