@@ -41,6 +41,9 @@ package Chandra_Toueg is
    type Estimate_Array is array (Process_ID) of Estimate_Message;
    type Vote_Array is array (Process_ID) of Vote_Type;
 
+   -- Named type required for procedure parameters in Ada
+   type Value_Array is array (Process_ID) of Value_Type;
+
    -- Simulator encapsulates the entire distributed system state for deterministic testing
    type Simulator is record
       Processes     : Process_Array;
@@ -67,7 +70,7 @@ package Chandra_Toueg is
    procedure Run_Round (Sim : in out Simulator);
 
    -- Setup and failure injection helpers
-   procedure Initialize (Sim : out Simulator; Initial_Values : array (Process_ID) of Value_Type);
+   procedure Initialize (Sim : out Simulator; Initial_Values : Value_Array);
    procedure Crash_Process (Sim : in out Simulator; P : Process_ID);
    procedure Suspect (Sim : in out Simulator; Suspector, Suspected : Process_ID);
    
