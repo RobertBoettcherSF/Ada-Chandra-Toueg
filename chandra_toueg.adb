@@ -113,7 +113,7 @@ package body Chandra_Toueg is
       Sim.Current_Round := Sim.Current_Round + 1;
    end Run_Round;
 
-   procedure Initialize (Sim : out Simulator; Initial_Values : array (Process_ID) of Value_Type) is
+   procedure Initialize (Sim : out Simulator; Initial_Values : Value_Array) is
    begin
       Sim.Current_Round := 1;
       Sim.FD := (others => (others => False));
